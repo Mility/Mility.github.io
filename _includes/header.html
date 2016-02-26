@@ -10,7 +10,7 @@
 
       <nav class="navbar">
         <a href="#" class="menu-icon">
-          <!--<span></span>-->
+          <span></span>
           <span></span>
           <span></span>
         </a>
@@ -18,10 +18,10 @@
         <ul class="nav">
           {% for page in site.pages %}
             {% if page.title and page.title != 'Home' %}
-            <li><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></li>
+            <li><a href="{{ page.url | prepend: site.baseurl }}">About me</a></li>
             {% endif %}
           {% endfor %}
-          <li><a href="{{ site.author.url /about}}" target="_blank">the author</a></li>
+          <!--<li><a href="{{ site.author.url /about}}" target="_blank">the author</a></li>-->
           <li><a href="{{ site.github }}" target="_blank">Github</a></li>
         </ul>
       </nav>
