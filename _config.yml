@@ -1,6 +1,6 @@
 # Site settings
 title: Mility
-email: zetsu@domain.com
+email: zhangmingju1992@live.com
 description: Um lindo tema feito para jekyll e com o <3
 baseurl: ""
 url: "http://mility.github.io/"
@@ -9,6 +9,7 @@ author:
   name     : 'Mility'
   email    : zhangmingju1992@foxmail.com
   url      : http://mility.github.io/
+  weibo: http://weibo.com/u/2145667551?is_all=1   #新浪微博
   #facebook : http://facebook.com/fernando.dev
   #twitter  : http://twitter.com/nandomoreirame
 
