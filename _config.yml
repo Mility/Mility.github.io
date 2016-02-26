@@ -14,7 +14,7 @@ author:
 
 github: https://github.com/Mility
 disqus_shortname: "Mility"
-google_analytics: UA-52446115-1
+#google_analytics: UA-52446115-1
 
 paginate: 2
 comments: true
