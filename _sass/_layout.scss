@@ -85,7 +85,7 @@
   margin: 0;
   float: left;
   color: darken($white-color, 10%);
-  font-family: $font-family-base;
+  font-family: '微软雅黑', 'Lora', 'Times New Roman', serif;
 
   @include media-query($on-phone) {
     float: none;
@@ -186,7 +186,7 @@
     font-size: 14px;
     margin-top: 0;
     font-weight: 300;
-    font-family: $font-family-serif;
+    font-family: '微软雅黑', 'Lora', 'Times New Roman', serif;
     margin-bottom: 1rem;
     font-style: italic;
     color: #9a9a9a;
