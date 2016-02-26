@@ -1,0 +1,8 @@
+---
+layout: post
+title:  "test 404"
+date:   2016-02-26 
+categories: Lorem
+comments: true
+---
+下面测试404网页，[点我测试](www.dianwoceshi.com)。
