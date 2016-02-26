@@ -1,7 +1,7 @@
 # Site settings
 title: Mility
 email: zhangmingju1992@foxmail.com
-description: Um lindo tema feito para jekyll e com o <3
+description: This is where I will tell my friends way too much about me
 baseurl: ""
 url: "http://mility.github.io/"
 
@@ -17,7 +17,7 @@ github: https://github.com/Mility
 disqus_shortname: "Mility"
 #google_analytics: UA-52446115-1
 
-paginate: 2
+paginate: 5
 comments: true
 paginate_path: "/page/:num"
 
