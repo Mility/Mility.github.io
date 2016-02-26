@@ -282,6 +282,16 @@
     background-color: #3A5897;
     color: #fff;
   }
+  /*设置微博预览颜色*/
+  a:hover i.fa-weibo {
+    background-color : #B93A3A;
+    color: #fff;
+  }
+  /*设置邮箱预览颜色*/
+  a:hover i.fa-envelope {
+    background-color : #0078D7;
+    color: #fff;
+  }
   a:hover i.fa-twitter {
     background-color: #00ABEC;
     color: #fff;
