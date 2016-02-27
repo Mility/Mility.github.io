@@ -1,9 +1,9 @@
-# Mility
+## Mility
 
 This is a personal [blog](https://Mility.github.io). 
 
 
-#screenshot
+##Demo screenshot
 
 
 ![screenshot](/images/screenshot.png)
