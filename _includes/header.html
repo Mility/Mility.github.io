@@ -16,14 +16,14 @@
         </a>
 
         <ul class="nav">
-        <!-- {% for page in site.pages %}
+        {% for page in site.pages %}
             {% if page.title and page.title != 'Home' %}
-            <li><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></li>
+               {% if page.title != '404' %}
+                 <li><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></li>
+               {% endif %}
             {% endif %}
-          {% endfor %}-->
-           {% if page.title and page.title != 'Home' %}
-          <li><a href="{{ prepend: site.baseurl }}">{{ page.title }}</a></li>
-          {% endif %}
+          {% endfor %}
+           
           <li><a href="{{ site.github }}" target="_blank">Github</a></li>
         </ul>
       </nav>
