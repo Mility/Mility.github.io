@@ -22,7 +22,8 @@
              {% endif %}
           {% endfor %}-->
           <!--<li><a href="{{ page.url | prepend: site.baseurl }}">About me</a></li>-->
-          <li><a href="{{ page.url | prepend: site.baseurl}}" target="_blank">About me</a></li>
+          
+          <li><a href="{{ site.author.url }}/about" target="_parent">About me</a></li>
           <li><a href="{{ site.github }}" target="_blank">Github</a></li>
         </ul>
       </nav>
