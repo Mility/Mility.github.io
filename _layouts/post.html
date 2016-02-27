@@ -31,6 +31,38 @@ slug: single
 
     </aside>
     
+    <!--增加回到顶端的模块-->
+    <script src="js/jquery.1.11.0.min.js"></script>
+
+		<!-- scroll2Top version 1.0 -->
+		<script src="js/jquery.scroll2Top.min.js"></script>
+
+		<!-- Demo CSS -->
+		<link href="css/demo.css" media="all" rel="stylesheet" />
+
+		<!-- scroll2Top CSS -->
+		<style>
+			#to_the_top {
+				display: none;
+				position: fixed;
+				cursor: pointer;
+				/* modify below css to your needs */
+				background: url('images/top.png') no-repeat left top;
+				width: 60px;
+				height: 60px;
+				top: 240px;
+				right: 50px;
+			}
+		</style>
+
+		<!-- scroll2Top JS -->
+		<script>
+			$(function() {
+				// default configuration
+				$("#to_the_top").scroll2Top();
+			});
+		</script>
+		<div id="to_the_top"></div>
 
     {% include comments.html %}
     
