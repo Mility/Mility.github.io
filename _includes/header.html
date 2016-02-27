@@ -21,8 +21,9 @@
             <li><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></li>
             {% endif %}
           {% endfor %}-->
-          
+           {% if page.title and page.title != 'Home' %}
           <li><a href="{{ prepend: site.baseurl }}">{{ page.title }}</a></li>
+          {% endif %}
           <li><a href="{{ site.github }}" target="_blank">Github</a></li>
         </ul>
       </nav>
