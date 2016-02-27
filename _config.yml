@@ -1,13 +1,13 @@
 # Site settings
 title: Mility
-email: zhangmingju1992@foxmail.com
+email: zhangmingju1992@live.com
 description: This is where I will tell my friends way too much about me
 baseurl: ""
 url: "http://mility.github.io/"
 
 author:
   name     : 'Mility'
-  email    : zhangmingju1992@live.com
+  email    : zhangmingju1992@foxmail.com
   #url      : http://mility.github.io/
   weibo: http://weibo.com/u/2145667551?is_all=1   #新浪微博
   facebook : http://facebook.com/Mility
