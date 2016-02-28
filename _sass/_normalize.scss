@@ -437,7 +437,7 @@ table tr {
   padding: 0;
 }
 /*2n表示每行的颜色都不一样，改为n*/
-table tr:nth-child(2n) {
+table tr:nth-child(n) {
   background-color: #f8f8f8;
 }
 table tr th {
