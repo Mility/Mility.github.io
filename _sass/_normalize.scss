@@ -432,17 +432,17 @@ table {
 }
 table tr {
   border-top: 1px solid #cccccc;
-  background-color: #AAB2BD;
+  background-color: #f8f8f8;/*#AAB2BD*/
   margin: 0;
   padding: 0;
 }
 /*2n表示每行的颜色都不一样，改为n*/
 table tr:nth-child(n) {
-  background-color: #f8f8f8;
+  background-color: #AAB2BD;/*#f8f8f8*/
 }
 table tr th {
   font-weight: bold;
-  border: 1px solid #cccccc;
+  border: 0px solid #cccccc;/*宽度为0*/
   text-align: left;
   margin: 0;
   padding: 6px 13px;
