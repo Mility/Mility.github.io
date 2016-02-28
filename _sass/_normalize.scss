@@ -426,14 +426,14 @@ th {
 }*/
 // =============================================================================
 /* --- Tables 测试一下新的table样式--- */
-table.dataintable {
+table {
 	margin-top:10px;
 	border-collapse:collapse;
 	border:1px solid #aaa;
 	width:100%;
 	}
 
-table.dataintable th {
+table th {
 	vertical-align:baseline;
 	padding:5px 15px 5px 6px;
 	background-color:#d5d5d5;
@@ -441,14 +441,14 @@ table.dataintable th {
 	text-align:left;
 	}
 
-table.dataintable td {
+table td {
 	vertical-align:text-top;
 	padding:6px 15px 6px 6px;
 	background-color:#efefef;
 	border:1px solid #aaa;
 	}
 
-table.dataintable pre {
+table pre {
 	width:auto;
 	margin:0;
 	padding:0;
@@ -456,35 +456,35 @@ table.dataintable pre {
 	background-color:transparent;
 	}
 
-table.dataintable p {margin:0 0 2px 0;}
+table p {margin:0 0 2px 0;}
 
-div#maincontent table.dataintable ul, div#maincontent table.dataintable li {
+div#maincontent table ul, div#maincontent table li {
 	list-style-type:none;
 	margin:0;
 	padding:0;
 	}
 
-table.dataintable td em
+table td em
 		{
 		color:#0000ff;
 		font-weight:normal;
 		}
 	
-table.dataintable .table_value {color:#0F93D2;}
+table .table_value {color:#0F93D2;}
 
 .no_wrap {white-space:nowrap;}
 
-div#maincontent table.dataintable ul.listintable {
+div#maincontent table ul.listintable {
 	margin:20px;
 	padding:0;
 	}
 
-div#maincontent table.dataintable ul.listintable  li{
+div#maincontent table ul.listintable  li{
 	list-style-type:disc;
 	}
 
 
-table.dataintable td.html5_new {
+table td.html5_new {
 	background: #EFEFEF url(/i/table_bg_html5.gif) top right no-repeat;
 	}
 
@@ -492,111 +492,3 @@ tr.notsupported {
 	color:#999999;
 	}
 
-
-
-	/* ----------------------------------- browsersupport ----------------------------------- */
-#jsref table.browsersupport td, #tags table.browsersupport td, #cssref table.browsersupport td
-	{
-		width:20%;
-	}
-
-#jsref table.browsersupport th, #tags table.browsersupport th, #cssref table.browsersupport th
-	{
-		color:#333333;
-		font-weight:400;
-	}
-
-#jsref table.browsersupport, #tags table.browsersupport, #cssref table.browsersupport
-	{
-		width:50%;
-	}
-
-table.browsersupport .bsIE {
-	background-image: url('/i/compatible_ie.gif');
-}
-
-table.browsersupport .bsFirefox {
-	background-image: url('/i/compatible_firefox.gif');
-}
-
-table.browsersupport .bsChrome {
-	background-image: url('/i/compatible_chrome.gif');
-}
-
-table.browsersupport .bsSafari {
-	background-image: url('/i/compatible_safari.gif');
-}
-
-table.browsersupport .bsOpera {
-	background-image: url('/i/compatible_opera.gif');
-}
-
-table.browsersupport .bsNoIE {
-	background-image: url('/i/incompatible_ie.gif');
-}
-
-table.browsersupport .bsNoFirefox {
-	background-image: url('/i/incompatible_firefox.gif');
-}
-
-table.browsersupport .bsNoChrome {
-	background-image: url('/i/incompatible_chrome.gif');
-}
-
-table.browsersupport .bsNoSafari {
-	background-image: url('/i/incompatible_safari.gif');
-}
-
-table.browsersupport .bsNoOpera {
-	background-image: url('/i/incompatible_opera.gif');
-}
-
-table.browsersupport .bsPreIE {
-	background-image: url('/i/precompatible_ie.gif');
-}
-
-table.browsersupport .bsPreFirefox {
-	background-image: url('/i/precompatible_firefox.gif');
-}
-
-table.browsersupport .bsPreChrome {
-	background-image: url('/i/precompatible_chrome.gif');
-}
-
-table.browsersupport .bsPreSafari {
-	background-image: url('/i/precompatible_safari.gif');
-}
-
-table.browsersupport .bsPreOpera {
-	background-image: url('/i/precompatible_opera.gif');
-}
-
-table.browsersupport {
-	margin-top:15px;
-	border-collapse:collapse;
-	width:70%;
-}
-
-table.browsersupport td {
-	padding: 3px;
-	height: 32px;
-	vertical-align: middle;
-	background:#fff no-repeat center;
-	border:1px solid #dadada;
-}
-
-table.browsersupport td.bsProperty
-		{
-		font-family: courier new;
-		white-space: nowrap;
-		width:20%;
-		}
-
-table.browsersupport th {
-	padding: 3px;
-	height: 15px;
-	vertical-align: middle;
-	text-align: center;
-	background-color:#efefef;
-	border:1px solid #c3c3c3;
-}
