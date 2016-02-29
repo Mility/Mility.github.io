@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "莱昂纳多凭电影《荒野猎人》封帝奥斯卡"
-date:   2016-02-29 21:36:00
+date:  2016-02-29
 categories: Lorem
 comments: true
 ---
