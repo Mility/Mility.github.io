@@ -6,7 +6,7 @@ categories: Lorem
 comments: true
 ---
 今天下午2.30出发去的
-![郁金香入口]("/img/IMG_2640.JPG")
+![郁金香入口](/img/IMG_2640.JPG)
 
 
 
