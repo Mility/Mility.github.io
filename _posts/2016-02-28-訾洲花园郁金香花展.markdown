@@ -6,9 +6,11 @@ categories: Lorem
 comments: true
 ---
 今天下午2.30出发去的
+
 ~~~
 图片中的链接不支持中文，也就是[]里面不能是中文。
 ~~~
+
 ![flower](/img/IMG_2640.JPG)
 
 
