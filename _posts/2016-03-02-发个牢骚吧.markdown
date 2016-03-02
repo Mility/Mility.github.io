@@ -2,7 +2,8 @@
 layout: post
 title:  "发个牢骚吧"
 date:   2016-03-02
-comments： true
+categories:  "杂感"
+comments：  true
 ---
 
 前天把论文发给导师，又是一顿大改啊，快崩溃了都♫  
