@@ -7,9 +7,9 @@
     top: 10px;
     bottom: 25px;
   };
-/*把表格背景墙改为#F7F7F7 再改为#AAB2BD*/
+/*把表格背景墙改为#F7F7F7 再改为#EBEBEB*/
   &, .hll, pre {
-    background-color: #EBEBEB;
+    background-color: #000000;
     border: none;
   }
 
@@ -45,7 +45,7 @@
   .err { color: #960050; background-color: #1e0010 } /* Error */
   .k { color: #a71d5d } /* Keyword */
   .l { color: #0086B3 } /* Literal */
-  .n { color: #000000 } /* Name f8f8f2*/
+  .n { color: #f8f8f2 } /* Name f8f8f2*/
   .o { color: #a71d5d } /* Operator #a71d5d*/
   .p { color: #f8f8f2 } /* Punctuation f8f8f2 */
   .cm { color: #75715e } /* Comment.Multiline */
