@@ -18,10 +18,10 @@ example, c(N ❀ dog) would be the number of times the word dog is seen paired
 with the tag N.
 Given these definitions, the maximum-likelihood estimates are
 
-~~~(javascript)
+```javascript
 q(s|u, v) = c(u, v, s)|c(u, v)
+```
 
-~~~
 and
 e(x|s) = c(s ❀ x) | c(s)
 
