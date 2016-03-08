@@ -9,7 +9,7 @@
   };
 /*把表格背景墙改为#F7F7F7 再改为#EBEBEB*/
   &, .hll, pre {
-    background-color: #000000;
+    background-color: #EBEBEB;
     border: none;
   }
 
@@ -25,7 +25,7 @@
     word-wrap: inherit;
 
     &, code {
-      color: #eeffdd;
+      color: #000000;/*改为eeffdd*/
     }
 
     code {
