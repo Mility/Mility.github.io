@@ -23,6 +23,9 @@ q(s|u, v) = c(u, v, s)|c(u, v)
 ```
 
 and  
-e(x|s) = c(s ❀ x) | c(s)
+
+~~~
+e(x|s) = c(s->x) | c(s)
+~~~
 
 For example, we would have the estimates
