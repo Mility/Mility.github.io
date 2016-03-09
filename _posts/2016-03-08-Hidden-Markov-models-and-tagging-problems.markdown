@@ -19,7 +19,7 @@ with the tag N.
 Given these definitions, the maximum-likelihood estimates are  
 
 ```javascript 
-q(s|u, v) = c(u, v, s)|c(u, v)
+q(s|u, v) = c(u, v, s)|c(u, v)（遗憾的是在此框里的括号和逗号颜色相近，看不清楚）
 ```
 
 and  
