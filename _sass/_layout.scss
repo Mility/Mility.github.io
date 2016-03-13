@@ -85,7 +85,7 @@
   margin: 0;
   float: left;
   color: darken($white-color, 10%);
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: Georgia, Helvetica, Arial, sans-serif;/*Georgia字体作为标题比较好看*/
 
   @include media-query($on-phone) {
     float: none;
