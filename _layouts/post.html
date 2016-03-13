@@ -2,7 +2,7 @@
 layout: default
 slug: single
 ---
-<article class="post container card" oncontextmenu="return false"><!--防止复制黏贴-->
+<article class="post container card" oncontextmenu="return test1()"><!--防止复制黏贴-->
   <header class="post-header">
     <h1 class="post-title">{{ page.title }}</h1>
     <span class="post-meta">
@@ -42,3 +42,9 @@ slug: single
   
   </div>
 </article>
+<script>
+  function test1(){
+    window.alert("不要点击右键")；
+    return false;
+  }
+</script>
