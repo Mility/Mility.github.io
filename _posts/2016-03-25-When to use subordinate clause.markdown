@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "When to use subordinate clause"
+title: When to use subordinate clause
 comments: true
 ---
 
