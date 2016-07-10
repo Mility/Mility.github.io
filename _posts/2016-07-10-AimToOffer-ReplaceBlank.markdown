@@ -14,7 +14,7 @@ title: "ReplaceBlank"
 
 using namespace std;
 
-void replace_black(char strs[], int length)
+void replace_blank(char strs[], int length)
 {
 	int i, j, count = 0, original_length = 0;
 
@@ -70,7 +70,7 @@ int main(void)
 		i ++;
 	}
 	strs[i] = '\0';
-	replace_black(strs, array_size);
+	replace_blank(strs, array_size);
 
 	return 0;
 }
