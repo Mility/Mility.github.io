@@ -30,7 +30,7 @@ void replace_black(char strs[], int length)
 	}
 	//cout << length << endl;
 
-	int newlength = count * 2 + original_length;
+	int newlength = count * 2 + original_length;//计算最新字符串的长度，也即把空格替换成'%20'之后的长度
 	if (newlength > length)
 		return ;
 
@@ -75,3 +75,5 @@ int main(void)
 	return 0;
 }
 ~~~
+
+这个代码的思想是利用两个指针进行字符串的复制和替换，一个用来指向原始字符串的末尾P1，一个用来指向替换之后的字符串的末尾P2。接下来是向前移动指针P1，逐个把它指向的字符复制到P2指向的位置，直到碰到第一个空格为止。
