@@ -20,7 +20,7 @@ public static int Linear_Search(int[] data, int key) {
 	}
 ~~~
 
-**2.二分查找** 
+**2.二分查找**  
    二分查找是针对已有序的序列进行的高效查找，时间复杂度0(n),，以下是实现：
    
 ~~~
