@@ -2,3 +2,88 @@
 layout: post
 title: "查找与排序"
 ---
+查找主要有顺序查找、二分查找、哈希表查找和二叉排序树查找。    
+1. 顺序查找
+    对于数组，按顺序比较给定的值，时间复杂度0(n),，以下是实现（java）：
+~~~
+public static int Linear_Search(int[] data, int key) {
+		if (data == null || data.length <= 0) {
+			return -1;
+		}
+		for (int i = 0; i < data.length; i++) {
+			if (data[i] == key) {
+				return i;
+			}
+		}
+		return -1;
+	}
+~~~
+
+2. 二分查找
+   二分查找是针对已有序的序列进行的高效查找，时间复杂度0(n),，以下是实现：
+~~~
+/**
+	 * 二分查找的前提是有序,循環
+	 * 
+	 * @param data
+	 * @param key
+	 * @return
+	 */
+	public static int binarySearch(int[] data, int key) {
+		if (data == null || data.length <= 0) {
+			return -1;
+		}
+		int low = 0;
+		int high = data.length - 1;
+		while (low < high) {
+			int mid = (low + high) / 2;
+			if (data[mid] == key) {
+				return mid;
+			} else if (data[mid] > key) {
+				high = mid - 1;
+			} else if (data[mid] < key) {
+				low = mid + 1;
+			}
+		}
+		return -1;
+	}
+
+	/**
+	 * 二分查找的前提是有序,递归
+	 * 
+	 * @param data
+	 * @param key
+	 * @return
+	 */
+	public static int recursiveBinarySearch(int[] data, int low, int high, int key) {
+		if (data == null || data.length <= 0) {
+			return -1;
+		}
+		if (low < high) {
+
+			int mid = (low + high) / 2;
+			if (data[mid] == key) {
+				return mid;
+			} else if (data[mid] > key) {
+				recursiveBinarySearch(data, low, mid - 1, key);
+			} else if (data[mid] < key) {
+				recursiveBinarySearch(data, mid + 1, high, key);
+			}
+
+		}
+		return -1;
+	}
+~~~
+
+3. 哈希表查找
+  哈希查找是通过计算数据元素的存储地址进行查找的一种方法。O(1)的查找，即所谓的秒杀。哈希查找的本质是先将数据映射成它的哈希值。哈希查找的核心是构造一个哈希函数，它将原来直观、整洁的数据映射为看上去似乎是随机的一些整数。  
+哈希查找的操作步骤：  
+1) 用给定的哈希函数构造哈希表；  
+2) 根据选择的冲突处理方法解决地址冲突；  
+3) 在哈希表的基础上执行哈希查找。  
+建立哈希表操作步骤：  
+1) step1 取数据元素的关键字key，计算其哈希函数值（地址）。若该地址对应的存储空间还没有被占用，则将该元素存入；否则执行step2解决冲突。  
+2) step2 根据选择的冲突处理方法，计算关键字key的下一个存储地址。若下一个存储地址仍被占用，则继续执行step2，直到找到能用的存储地址为止。  
+哈希查找步骤为：  
+1) Step1 对给定k值，计算哈希地址 Di=H（k）；若HST为空，则查找失败；若HST=k，则查找成功；否则，执行step2（处理冲突）。  
+2) Step2 重复计算处理冲突的下一个存储地址Dk=R（Dk-1），直到HST[Dk]为空，或HST[Dk]=k为止。若HST[Dk]=K，则查找成功，否则查找失败。  
