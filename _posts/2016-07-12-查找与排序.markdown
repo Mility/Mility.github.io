@@ -137,6 +137,7 @@ boolean Insert(BiTree T, int key)
 }  
 ~~~
 
-以上代码主要参考[这里](http://m.blog.csdn.net/article/details?id=51315610)。
+以上代码主要参考[这里](http://m.blog.csdn.net/article/details?id=51315610)。  
+图片来源于[这里](http://www.programgo.com/article/75472745892/)。  
 
 
