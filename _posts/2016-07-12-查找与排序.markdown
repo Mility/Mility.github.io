@@ -306,4 +306,5 @@ Shell排序比冒泡排序快5倍，比插入排序大致快2倍。Shell排序�
 不是稳定的排序算法：选择排序、快速排序、希尔排序、堆排序  
 
 排序转载自于：[ 各种内部排序算法复杂度的比较和排序方法的选择](http://blog.chinaunix.net/uid-26565142-id-3126683.html)。  
-其中各种排序的示意图来自于[八大排序算法图文讲解](http://www.cricode.com/3212.html)。
+其中各种排序的示意图来自于[八大排序算法图文讲解](http://www.cricode.com/3212.html)。  
+更多请参考[面试中的排序算法总结](http://www.imooc.com/article/8633)。
