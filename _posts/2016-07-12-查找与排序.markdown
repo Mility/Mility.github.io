@@ -9,7 +9,7 @@ title: "查找与排序"
 查找主要有顺序查找、二分查找、哈希表查找和二叉排序树查找。    
 **1.顺序查找**    
 
-    对于数组，按顺序比较给定的值，时间复杂度0(n),，以下是实现：
+对于数组，按顺序比较给定的值，时间复杂度0(n),，以下是实现：
 
 ```JAVA
 public static int Linear_Search(int[] data, int key) {
@@ -126,7 +126,7 @@ boolean Search(BiTree T, int key, BiTree f, BiTree p){
 
 插入的实现：
 
-```
+```JAVA
 boolean Insert(BiTree T, int key)  
 {  
     if(!Search(T,key,null,p)) {  
@@ -180,7 +180,7 @@ boolean Insert(BiTree T, int key)
 第一层递归，循环n次，第二层循环2\*(n/2)......   
 所以共有 
 
-```
+```LaTex
 n+2(n/2)+4(n/4)+...+n\*(n/n) = n+n+n+...+n=k\*n=log2(n)\*n
 ```
 
