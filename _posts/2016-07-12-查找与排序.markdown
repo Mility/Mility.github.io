@@ -184,6 +184,7 @@ boolean Insert(BiTree T, int key)
 n+2(n/2)+4(n/4)+...+n\*(n/n) = n+n+n+...+n=k\*n=log2(n)\*n
 ```
 
+
 所以算法复杂度为O(log2(n)\*n)   
 
 
