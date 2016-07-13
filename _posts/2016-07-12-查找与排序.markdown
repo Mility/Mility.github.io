@@ -2,12 +2,16 @@
 layout: post
 title: "查找与排序"
 ---
-## 查找
+## 查找  
+
+------
+
 查找主要有顺序查找、二分查找、哈希表查找和二叉排序树查找。    
 **1.顺序查找**    
-    对于数组，按顺序比较给定的值，时间复杂度0(n),，以下是实现（java）：
 
-~~~
+    对于数组，按顺序比较给定的值，时间复杂度0(n),，以下是实现[^code]
+
+```JAVA
 public static int Linear_Search(int[] data, int key) {
 		if (data == null || data.length <= 0) {
 			return -1;
@@ -19,12 +23,14 @@ public static int Linear_Search(int[] data, int key) {
 		}
 		return -1;
 	}
-~~~
+```
 
 **2.二分查找**  
-   二分查找是针对已有序的序列进行的高效查找，时间复杂度0(n),，以下是实现：
+
+
+   二分查找是针对已有序的序列进行的高效查找，时间复杂度0(n),，以下是实现[^code]
    
-~~~
+```JAVA
 /**
 	 * 二分查找的前提是有序,循環
 	 * 
@@ -76,7 +82,7 @@ public static int Linear_Search(int[] data, int key) {
 		}
 		return -1;
 	}
-~~~
+```
 
 示意图如下：  
 ![](http://img.my.csdn.net/uploads/201304/23/1366707054_4371.jpg)  
@@ -99,9 +105,9 @@ public static int Linear_Search(int[] data, int key) {
 2)若根节点有右子树，则右子树的所有节点都比根节点大。  
 3)根节点的左，右子树也分别为二叉排序树。  
 
-查找的实现：
+查找的实现[^code]：
 
-~~~
+```JAVA
 boolean Search(BiTree T, int key, BiTree f, BiTree p){  
     if(T==null) {  
         p == f;  
@@ -116,11 +122,11 @@ boolean Search(BiTree T, int key, BiTree f, BiTree p){
            return Search(T.rchild,key,T,p);  
     }  
 }  
-~~~
+```
 
-插入的实现：
+插入的实现[^code]：
 
-~~~
+```
 boolean Insert(BiTree T, int key)  
 {  
     if(!Search(T,key,null,p)) {  
@@ -136,12 +142,15 @@ boolean Insert(BiTree T, int key)
     }  
     return false;  
 }  
-~~~
+```
 
 以上代码主要参考[这里](http://m.blog.csdn.net/article/details?id=51315610)。  
 图片来源于[这里](http://www.programgo.com/article/75472745892/)。  
 
 ## 排序
+
+------
+
 排序要比查找复杂一些。面试官经常要求应聘者比较插入排序、冒泡排序、归并排序、快速排序等不同算法的优劣。  
 选择排序、快速排序、希尔排序、堆排序不是稳定的排序算法， 冒泡排序、插入排序、归并排序和基数排序是稳定的排序算法。  
 
@@ -149,12 +158,18 @@ boolean Insert(BiTree T, int key)
 这是最原始，也是众所周知的最慢的算法了。他的名字的由来因为它的工作看来象是冒泡：  
 
 
-复杂度为O(n\*n)。当数据为正序，将不会有交换。复杂度为O(0)。    
+复杂度为O(n\*n)。当数据为正序，将不会有交换。复杂度为O(0)。
+
 ### 直接插入排序：  O(n\*n)   
+
 ### 选择排序：   O(n\*n)    
-### 快速排序：  平均时间复杂度log2(n)\*n，所有内部排序方法中最高好的，大多数情况下总是最好的。  
+
+### 快速排序：  平均时间复杂度log2(n)\*n，所有内部排序方法中最高好的，大多数情况下总是最好的。 
+
 ### 归并排序：    log2(n)\*n    
+
 ### 堆排序：  log2(n)\*n    
+
 ### 希尔排序：  算法的复杂度为n的1.2次幂    
 
 
@@ -163,8 +178,10 @@ boolean Insert(BiTree T, int key)
 1.数组的大小是2的幂，这样分下去始终可以被2整除。假设为2的k次方，即k=log2(n)。   
 2.每次我们选择的值刚好是中间值，这样，数组才可以被等分。   
 第一层递归，循环n次，第二层循环2\*(n/2)......   
-所以共有  
-n+2(n/2)+4(n/4)+...+n\*(n/n) = n+n+n+...+n=k\*n=log2(n)\*n 
+所以共有 [^LaTeX]  
+
+ $$n+2(n/2)+4(n/4)+...+n*(n/n) = n+n+n+...+n=k*n=log2(n)*n$$
+ 
 所以算法复杂度为O(log2(n)\*n)   
 
 
