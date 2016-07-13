@@ -9,7 +9,7 @@ title: "查找与排序"
 查找主要有顺序查找、二分查找、哈希表查找和二叉排序树查找。    
 **1.顺序查找**    
 
-    对于数组，按顺序比较给定的值，时间复杂度0(n),，以下是实现[^code]
+    对于数组，按顺序比较给定的值，时间复杂度0(n),，以下是实现：
 
 ```JAVA
 public static int Linear_Search(int[] data, int key) {
@@ -28,7 +28,7 @@ public static int Linear_Search(int[] data, int key) {
 **2.二分查找**  
 
 
-   二分查找是针对已有序的序列进行的高效查找，时间复杂度0(n),，以下是实现[^code]
+   二分查找是针对已有序的序列进行的高效查找，时间复杂度0(n),，以下是实现：
    
 ```JAVA
 /**
@@ -105,7 +105,7 @@ public static int Linear_Search(int[] data, int key) {
 2)若根节点有右子树，则右子树的所有节点都比根节点大。  
 3)根节点的左，右子树也分别为二叉排序树。  
 
-查找的实现[^code]：
+查找的实现：
 
 ```JAVA
 boolean Search(BiTree T, int key, BiTree f, BiTree p){  
@@ -124,7 +124,7 @@ boolean Search(BiTree T, int key, BiTree f, BiTree p){
 }  
 ```
 
-插入的实现[^code]：
+插入的实现：
 
 ```
 boolean Insert(BiTree T, int key)  
@@ -178,12 +178,15 @@ boolean Insert(BiTree T, int key)
 1.数组的大小是2的幂，这样分下去始终可以被2整除。假设为2的k次方，即k=log2(n)。   
 2.每次我们选择的值刚好是中间值，这样，数组才可以被等分。   
 第一层递归，循环n次，第二层循环2\*(n/2)......   
-所以共有 [^LaTeX]  
+所以共有 
 
- $$n+2(n/2)+4(n/4)+...+n*(n/n) = n+n+n+...+n=k*n=log2(n)*n$$
+$$n+2(n/2)+4(n/4)+...+n\*(n/n) = n+n+n+...+n=k\*n=log2(n)\*n$$
  
 所以算法复杂度为O(log2(n)\*n)   
 
+### 2. 书写一个质能守恒公式[^LaTeX]
+
+$$E=mc^2$$
 
   
 其他的情况只会比这种情况差，最差的情况是每次选择到的middle都是最小值或最大值，那么他将变成交换法（由于使用了递归，情况更糟）。但是你认为这种情况发生的几率有多大？？呵呵，你完全不必担心这个问题。实践证明，大多数的情况，快速排序总是最好的。   
