@@ -1,0 +1,5 @@
+---
+layout: post
+title: "Java中的构造方法总结"
+---
+参考这篇[博文](http://blog.csdn.net/zmissm/article/details/14176725)，总结的很好！！！
