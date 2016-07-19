@@ -251,6 +251,81 @@ n+2(n/2)+4(n/4)+...+n*(n/n) = n+n+n+...+n=k*n=log2(n)*n
 
 快速排序比大部分排序算法都要快。尽管我们可以在某些特殊的情况下写出比快速排序快的算法，但是就通常情况而言，没有比它更快的了。快速排序是递归的，对于内存非常有限的机器来说，它不是一个好的选择。   
 
+```java
+/*
+ * QuickSort.cpp
+ *
+ *  Created on: 2016年7月19日
+ *      Author: mility
+ */
+
+#include <iostream>
+#include <ctime>
+
+#include <cstdlib>
+
+using namespace std;
+
+int RandomInRange(int start, int end) {
+	srand((unsigned) time(NULL));
+	int value = rand() % (end - start + 1) + start;
+	return value;
+}
+
+void Swap(int *a, int *b) {
+	int temp;
+	temp = *a;
+	*a = *b;
+	*b = temp;
+}
+
+int Partition(int data[], int length, int start, int end) {
+
+	if (data == NULL || length <= 0 || start < 0 || end >= length)
+		throw std::exception();
+		//throw std::runtime_error("Invaild Parameters");
+
+	int index = RandomInRange(start, end);
+	Swap(&data[index], &data[end]);
+
+	int small = start - 1;
+	for (index = start; index < end; ++index) {
+
+		if (data[index] < data[end]) {
+			++small;
+			if (small != index)
+				Swap(&data[index], &data[small]);
+		}
+	}
+	++small;
+	Swap(&data[small], &data[end]);
+	return small;
+
+}
+
+void QuickSort(int data[], int length, int start, int end) {
+	if (start == end)
+		return;
+
+	int index = Partition(data, length, start, end);
+	if (index > start)
+		QuickSort(data, length, start, index - 1);
+	if (index < end)
+		QuickSort(data, length, index + 1, end);
+}
+
+int main() {
+	//cout << RandomInRange(1, 10) << endl;
+	int data[] = { 2, 4, 3, 1, 5, 7, 6 };
+	QuickSort(data, 7, 0, 6);
+	for (int i = 0; i < 7; i++) {
+		cout << data[i] << endl;
+	}
+	return 0;
+
+}
+```
+
 2.归并排序（MergeSort）  
 
 归并排序先分解要排序的序列，从1分成2，2分成4，依次分解，当分解到只有1个一组的时候，就可以排序这些分组，然后依次合并回原来的序列中，这样就可以排序所有数据。合并排序比堆排序稍微快一点，但是需要比堆排序多一倍的内存空间，因为它需要一个额外的数组。  
