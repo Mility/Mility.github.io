@@ -11,7 +11,7 @@ title: "查找与排序"
 
 对于数组，按顺序比较给定的值，时间复杂度0(n),，以下是实现：
 
-```JAVA
+```java
 public static int Linear_Search(int[] data, int key) {
 		if (data == null || data.length <= 0) {
 			return -1;
@@ -30,7 +30,7 @@ public static int Linear_Search(int[] data, int key) {
 
    二分查找是针对已有序的序列进行的高效查找，时间复杂度0(n),，以下是实现：
    
-```JAVA
+```java
 /**
 	 * 二分查找的前提是有序,循環
 	 * 
@@ -107,7 +107,7 @@ public static int Linear_Search(int[] data, int key) {
 
 查找的实现：
 
-```JAVA
+```java
 boolean Search(BiTree T, int key, BiTree f, BiTree p){  
     if(T==null) {  
         p == f;  
@@ -126,7 +126,7 @@ boolean Search(BiTree T, int key, BiTree f, BiTree p){
 
 插入的实现：
 
-```JAVA
+```java
 boolean Insert(BiTree T, int key)  
 {  
     if(!Search(T,key,null,p)) {  
@@ -251,7 +251,7 @@ n+2(n/2)+4(n/4)+...+n*(n/n) = n+n+n+...+n=k*n=log2(n)*n
 
 快速排序比大部分排序算法都要快。尽管我们可以在某些特殊的情况下写出比快速排序快的算法，但是就通常情况而言，没有比它更快的了。快速排序是递归的，对于内存非常有限的机器来说，它不是一个好的选择。   
 
-```java
+```c++
 /*
  * QuickSort.cpp
  *
