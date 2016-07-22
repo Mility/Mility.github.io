@@ -161,14 +161,14 @@ blockquote {
 }
 
 /**
- * Code formatting
+ * Code formatting 这里控制的是代码的各种颜色
  */
 pre,
 code {
   font-size: 15px;
   border: 1px solid $gray-color-light;
   border-radius: 3px;
-  background-color: #eef;
+  background-color: #F7F7F7;/*背景颜色#eef改为#F7F7F7*/
 }
 
 code {
