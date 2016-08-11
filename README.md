@@ -1,6 +1,6 @@
 ## Mility
 
-This is a personal [blog](https://Mility.github.io). 
+This is a personal [blog](https://Mility.github.io). Mainly used for complaints.
 
 
 ##Demo screenshot
