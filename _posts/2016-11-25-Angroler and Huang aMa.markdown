@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Angroler and Jack Wu"
+title: "Angroler and Huang aMa"
 ---
 皇阿玛与我的日常。
 
