@@ -7,14 +7,12 @@ title: "Spring-Data-Redis存储键值出现乱码"
    
     ![乱码](/img/post/20180208_1.png)
 	
-经过航哥的指导才发现，主要是序列化的原因，最开始的代码使用如下:
-	
-	```java
-	
-	@Autowired
-	RedisTemplate<Object, Object> redisTemplate;
-	
-	```
+  经过航哥的指导才发现，主要是序列化的原因，最开始的代码使用如下:
+  
+```java
+@Autowired
+RedisTemplate<Object, Object> redisTemplate;
+```
 	
 	由于该方法使用的是默认的序列化工具，查看源码可以发现使用了标准的Java serialization；
 	
