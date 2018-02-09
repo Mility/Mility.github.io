@@ -1,10 +1,12 @@
 ---
 layout: post
 title: "Spring-Data-Redis存储键值出现乱码"
+date: 2018-02-09
+comments: true
 ---  
 
    最近在利用Spring Data操作redis出现了乱码，在key前面出现了\xAC\xED\x00\x05t\x00，value也是如此，只是内容不同，如下图所示：
-<<<<<<< HEAD
+
 ![乱码](/img/post/20180208_1.png)
 	经过航哥的指导才发现，主要是序列化的原因，最开始的代码使用如下：
 	
@@ -18,11 +20,13 @@ title: "Spring-Data-Redis存储键值出现乱码"
   经过航哥的指导才发现，主要是序列化的原因，最开始的代码使用如下:
   
 ```java
+
 @Autowired
 RedisTemplate<Object, Object> redisTemplate;
 ```
+
 	
-	由于该方法使用的是默认的序列化工具，查看源码可以发现使用了标准的Java serialization；
+由于该方法使用的是默认的序列化工具，查看源码可以发现使用了标准的Java serialization；
 	
 
 ```java
@@ -41,13 +45,15 @@ RedisTemplate<Object, Object> redisTemplate;
 	defaultSerializer = new JdkSerializationRedisSerializer(classLoader != null ? classLoader : this.getClass().getClassLoader());
 ```
 	
-	但是由于标准的序列化添加了类信息，所以在key或者value前面出现了类似下面的结果：
+但是由于标准的序列化添加了类信息，所以在key或者value前面出现了类似下面的结果：
 
+~~~
 1."\xac\xed\x00\x05t\x00\x05atInt"
 2."\xac\xed\x00\x05t\x00\nmySuperKey"
 3."\xac\xed\x00\x05t\x00\bsuperKey"
+~~~
 	
-	所以可以通过配置redisTemple的序列化来改变：
+所以可以通过配置redisTemple的序列化来改变：
 	
 ```java
 	
@@ -63,7 +69,8 @@ RedisTemplate<Object, Object> redisTemplate;
 	}
 
 ```
-	或者直接使用StringRedisTemplate代替RedisTemplate即可，因为StringRedisTemplate的序列化配置如下：
+
+或者直接使用StringRedisTemplate代替RedisTemplate即可，因为StringRedisTemplate的序列化配置如下：
 
 	
 ```java
@@ -77,7 +84,7 @@ RedisTemplate<Object, Object> redisTemplate;
 	}
 ```
 	
-	最后测试解决了乱码：
+最后测试解决了乱码：
 	
 ![乱码](/img/post/20180208_2.png)
 	
