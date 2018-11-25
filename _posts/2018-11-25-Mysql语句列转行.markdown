@@ -1,0 +1,145 @@
+---
+layout: post
+title: "Mysql语句列转行"
+date: 2018-11-25
+comments: true
+---  
+
+
+今天有了一个mysql的应用场景，如下图，将图1中的结果变成图2
+
+![原始数据](/img/post/20181125_1.png)
+  *图1*
+  
+![变化后](/img/post/20181125_3.png)
+  *图2*
+
+经过不断的查找与修正，终于确定采用数据库的行转列方法实现：
+
+~~~
+ /*新建order_*/
+DROP TABLE IF EXISTS `order_`;    
+create table order_(
+   order_id INT NOT NULL AUTO_INCREMENT,
+   name VARCHAR(100) NOT NULL,
+   phone_number VARCHAR(40) NOT NULL,
+   goods VARCHAR(40) NOT NULL,
+   goods_number VARCHAR(40) NOT NULL,
+    goods_price VARCHAR(40) NOT null,primary key(order_id)
+);
+~~~
+
+~~~
+/*新建good_，后来发现用不到该表*/
+DROP TABLE IF EXISTS `good_`; 
+create table good_(
+   good_id INT NOT NULL AUTO_INCREMENT,
+   good_name VARCHAR(100) NOT NULL,
+   primary key(good_id)
+);
+~~~
+
+
+~~~
+insert good_ values(1,"A");
+ /*新建new_order*/
+DROP TABLE IF EXISTS `new_order`; 
+create table new_order(
+   order_id INT NOT NULL AUTO_INCREMENT,
+   name VARCHAR(100) NOT NULL,
+   phone_number VARCHAR(40) NOT NULL,
+   goods_A VARCHAR(40),
+   goods_B VARCHAR(40),
+    goods_C VARCHAR(40),
+    goods_D VARCHAR(40),
+    primary key(order_id)
+);
+~~~
+
+select * from order_;
+
+~~~
+ /*合并字段显示*/
+SELECT
+    `name`,
+    GROUP_CONCAT(goods, ":", goods_number) as goodList
+FROM
+    order_
+GROUP BY
+    `name`;
+~~~
+
+上面的语句显示效果如下图3：
+![变化后](/img/post/20181125_2.png)
+  *图3*
+
+~~~
+ /*列转行查询*/
+   SELECT
+    `name`,phone_number,
+    MAX(
+        CASE 
+        WHEN  goods='A' THEN
+            goods_number
+        END
+    ) AS goods_A,
+    MAX(
+        CASE 
+        WHEN goods='B' THEN
+            goods_number
+        END
+    ) AS goods_B, 
+    MAX(
+        CASE 
+        WHEN goods='C' THEN
+            goods_number
+        END
+    ) AS goods_C,
+    MAX(
+        CASE 
+        WHEN goods='D' THEN
+            goods_number
+        END
+    ) AS goods_D
+FROM
+    order_
+GROUP BY `name`
+;
+~~~
+查询结果即为图2中的结果，最后：
+
+~~~
+/*将查询结果插入到新表new_order*/
+insert into new_order (name,phone_number,goods_A,goods_B,goods_C,goods_D)
+   SELECT
+    `name`,phone_number,
+    MAX(
+        CASE 
+        WHEN  goods='A' THEN
+            goods_number
+        END
+    ) AS goods_A,
+    MAX(
+        CASE 
+        WHEN goods='B' THEN
+            goods_number
+        END
+    ) AS goods_B, 
+    MAX(
+        CASE 
+        WHEN goods='C' THEN
+            goods_number
+        END
+    ) AS goods_C,
+    MAX(
+        CASE 
+        WHEN goods='D' THEN
+            goods_number
+        END
+    ) AS goods_D
+FROM
+    order_
+GROUP BY `name`
+;
+~~~
+
