@@ -6,18 +6,20 @@ comments: true
 ---  
 
 
-今天有了一个mysql的应用场景，如下图，将图1中的结果变成图2
+今天有了一个mysql的使用需求，是将下图1中的结果变成图2的所示；
 
 ![原始数据](/img/post/20181125_1.png)
-  *图1*
+                        *图1*
   
 ![变化后](/img/post/20181125_3.png)
-  *图2*
+                        *图2*
 
-经过不断的查找与修正，终于确定采用数据库的行转列方法实现：
+开始以为可以使用多表合并，后来发现可以采用数据库的行转列方法实现，步骤如下：
+
+新建order_：
 
 ~~~
- /*新建order_*/
+ /**/
 DROP TABLE IF EXISTS `order_`;    
 create table order_(
    order_id INT NOT NULL AUTO_INCREMENT,
@@ -29,8 +31,10 @@ create table order_(
 );
 ~~~
 
+新建good_，后来发现用不到该表：
+
 ~~~
-/*新建good_，后来发现用不到该表*/
+/**/
 DROP TABLE IF EXISTS `good_`; 
 create table good_(
    good_id INT NOT NULL AUTO_INCREMENT,
@@ -39,10 +43,9 @@ create table good_(
 );
 ~~~
 
+新建new_order：
 
 ~~~
-insert good_ values(1,"A");
- /*新建new_order*/
 DROP TABLE IF EXISTS `new_order`; 
 create table new_order(
    order_id INT NOT NULL AUTO_INCREMENT,
@@ -58,8 +61,9 @@ create table new_order(
 
 select * from order_;
 
+合并字段显示：
 ~~~
- /*合并字段显示*/
+ /**/
 SELECT
     `name`,
     GROUP_CONCAT(goods, ":", goods_number) as goodList
@@ -71,10 +75,10 @@ GROUP BY
 
 上面的语句显示效果如下图3：
 ![变化后](/img/post/20181125_2.png)
-  *图3*
-
+           *图3*
+列转行查询：
 ~~~
- /*列转行查询*/
+ 
    SELECT
     `name`,phone_number,
     MAX(
@@ -106,10 +110,10 @@ FROM
 GROUP BY `name`
 ;
 ~~~
-查询结果即为图2中的结果，最后：
+查询结果即为图2中的结果，最后将查询结果插入到新表new_order：
 
 ~~~
-/*将查询结果插入到新表new_order*/
+/**/
 insert into new_order (name,phone_number,goods_A,goods_B,goods_C,goods_D)
    SELECT
     `name`,phone_number,
@@ -143,3 +147,4 @@ GROUP BY `name`
 ;
 ~~~
 
+这样就解决这个需求。不知道你是否有更好的方案，欢迎评论，好像评论不了eee，那就发我邮箱吧！
