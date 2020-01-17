@@ -8,15 +8,15 @@ comments: true
 
 
 
-#####1.首先进入redis的安装目录，进入src，例如：  
+##### 1.首先进入redis的安装目录，进入src，例如：  
 >cd /app/redis-5.0.0/src 
-#####2.运行./redis-cli -h 127.0.0.1 -p 6379 --bigkeys -i 0.1  
+##### 2.运行./redis-cli -h 127.0.0.1 -p 6379 --bigkeys -i 0.1  
 查看bigkeys  
 
-#####3.运行./redis-cli info stats|grep ops  
+##### 3.运行./redis-cli info stats|grep ops  
 >instantaneous_ops_per_sec:0 每秒操作数  
 
-#####4.运行./redis-cli info replication|grep backlog  
+##### 4.运行./redis-cli info replication|grep backlog  
 
 >repl_backlog_active:0  
 repl_backlog_size:1048576  #这个是积压缓冲区大小  
@@ -24,28 +24,28 @@ repl_backlog_first_byte_offset:0
 repl_backlog_histlen:0  
 
 
-#####5.运行./redis-cli info memory|grep used |grep human  
+##### 5.运行./redis-cli info memory|grep used |grep human  
 
->used_memory_human:832.90K  #内存分配器（jemalloc）从操作系统分配的内存总量  
-used_memory_rss_human:3.23M #操作系统看到的内存占用，top命令看到的内存   
-used_memory_peak_human:834.10K  # Redis内存消耗的峰值  
-used_memory_lua_human:37.00K #lua脚本引擎占用的内存大小  
-used_memory_scripts_human:0B  
+> used_memory_human:832.90K  #内存分配器（jemalloc）从操作系统分配的内存总量  
+> used_memory_rss_human:3.23M #操作系统看到的内存占用，top命令看到的内存   
+> used_memory_peak_human:834.10K  # Redis内存消耗的峰值  
+> used_memory_lua_human:37.00K #lua脚本引擎占用的内存大小  
+> used_memory_scripts_human:0B  
 
 
-#####6.运行./redis-cli info clients  
+##### 6.运行./redis-cli info clients  
 
 >connected_clients:1  #这个就是正在连接的客户端数量  
 client_recent_max_input_buffer:2  
 client_recent_max_output_buffer:0  
 
-#####7.运行./redis-cli info stats|grep reject  
+##### 7.运行./redis-cli info stats|grep reject  
 拒绝连接的数量  
 
-#####8.运行./redis-cli slowlog get  
+##### 8.运行./redis-cli slowlog get  
 查看慢查询日志  
 
-#####9.运行 bin/redis-benchmark -h 192.168.157.137 -p 7000 -t get -q  
+##### 9.运行 bin/redis-benchmark -h 192.168.157.137 -p 7000 -t get -q  
 压测指令  
 
 
@@ -53,10 +53,10 @@ client_recent_max_output_buffer:0
 
 
 
-#####10.启动集群  
+##### 10.启动集群  
 >bin/redis-cli --cluster create 192.168.157.136:7000 192.168.157.136:7001 192.168.157.137:7000 192.168.157.137:7001 192.168.157.138:7000 192.168.157.138:7001 --cluster-replicas 1  
 
-#####11.主节点故障修复  
+##### 11.主节点故障修复  
 首先删除bin/redis-cli --cluster del-node 192.168.157.138:7001 b468dfe0518b6af3478ef18a38189d577e6327d8  
 然后删除生成的conf文件，  
 然后重启redis，加入集群，依次运行以下命令： 
@@ -70,9 +70,7 @@ client_recent_max_output_buffer:0
 最后修复  
 >redis-cli --cluster fix IP:7000  
 
-
-
-#####12.删除一个主节点  
+##### 12.删除一个主节点  
 >bin/redis-cli --cluster del-node 192.168.157.138:7001 b468dfe0518b6af3478ef18a38189d577e6327d8  
 2bfd1d40fa1cf5da3807d137d2fbca435f5a9de0 
  
