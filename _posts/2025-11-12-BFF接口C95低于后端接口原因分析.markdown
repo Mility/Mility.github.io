@@ -1,8 +1,7 @@
 ---
 layout: post
 title:  "BFF接口C95低于后端接口原因分析"
-date:   2025-11-12 14:00:08
-categories: Lorem
+date:   2025-11-12
 comments: true
 ---
 
