@@ -1,0 +1,127 @@
+---
+layout: post
+title: "为什么caffine缓存不生效"
+date: 2025-12-08
+comments: true
+---
+
+代码如下：
+
+~~~
+package org.example.service;
+
+import com.github.benmanes.caffeine.cache.Caffeine;
+import com.github.benmanes.caffeine.cache.LoadingCache;
+import lombok.extern.slf4j.Slf4j;
+import org.example.dao.Demo;
+import org.example.dao.UserReq;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+/**
+ * @author 
+ * @version 1.0
+ * @date 2025/12/8 16:52
+
+**/
+@Component
+@Slf4j
+public class CacheBuild {
+
+    @Value("${cache.max-size:500}")
+    private int cacheMaxSize;
+    @Value("${cache.expiry-minutes:2}")
+    private int cacheExpireMinutes;
+    private final LoadingCache<String, List<Demo>> thumbnailCache;
+
+    @Autowired
+    public CacheBuild() {
+        this.thumbnailCache = buildCache();
+        }
+
+    private LoadingCache<String, List<Demo>> buildCache() {
+        return Caffeine.newBuilder()
+                .maximumSize(cacheMaxSize)
+                .expireAfterWrite(cacheExpireMinutes, TimeUnit.MINUTES)
+                .recordStats()
+                .build(key -> {
+                    log.info("Cache miss - loading data from remote api for key: {}", key);
+                    UserReq req = parseCacheKey(key);
+                    try {
+                        return doBatchQueryUserList(req);
+                    } catch (Exception e) {
+                        log.error("Failed to load data for key: {}, returning empty", key, e);
+                        return Collections.emptyList();
+                    }
+                });
+    }
+
+
+    private List<Demo> doBatchQueryUserList(UserReq req) {
+        try {
+            //模拟超时
+            Thread.sleep(287L);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        Demo demo1 = new Demo("1");
+        Demo demo2 = new Demo("2");
+        Demo demo3 = new Demo("3");
+        Demo demo4 = new Demo("4");
+        return List.of(demo1,demo2,demo3,demo4);
+    }
+
+    public List<Demo> batchQueryUserList(UserReq req) {
+        return thumbnailCache.get(req.toString());
+    }
+
+
+    private UserReq parseCacheKey(String key) {
+        return new UserReq();
+    }
+
+
+
+}
+
+~~~
+
+不管怎么样调用batchQueryUserList方法，都会打印
+Cache miss - loading data from remote api for key:xxxx，这是为什么呢，且缓存始终为0
+最终定位到原因是：
+spring 创建bean的步骤：  
+1. 实例化对象（调用构造器）
+2. 注入依赖（对字段/setter 注入 @Autowired/@Value 等）
+3. 执行 BeanPostProcessors（例如 @ConfigurationProperties 绑定对于 properties bean 在合适阶段被处理）。
+4. 调用 @PostConstruct（如果有）。
+
+~~~
+根本原因：你在构造函数里调用 buildCache()，但 cacheMaxSize / cacheExpireMinutes 是通过字段 @Value 注入的 —— 在 Spring 创建 bean 并调用构造函数时，这些字段尚未被注入（仍为 int 的默认值 0），导致 Caffeine 被构造成 maximumSize(0) 和 expireAfterWrite(0min)（或行为等同），所以缓存永远无法存储条目/立即过期，看起来“cache 一直为空”。
+~~~
+
+修复建议：
+~~~
+ @Autowired
+    public CacheBuild(@Value("${cache.max-size:500}") int cacheMaxSize, @Value("${cache.expiry-minutes:2}") int cacheExpireMinutes) {
+        this.cacheMaxSize = cacheMaxSize;
+        this.cacheExpireMinutes = cacheExpireMinutes;
+        this.thumbnailCache = buildCache();
+    }
+~~~
+把 @Value 放到构造器参数上能读取到值，是因为 Spring 在实例化 bean 前会解析并准备好构造函数的参数（包含用占位符/SpEL 表达式的 @Value 值），然后用这些已解析的参数去调用构造函数；而字段级的 @Value/字段注入是在对象实例化之后、构造器调用之后才通过反射赋值的。所以构造器参数的值在构造函数内部“可用”，字段注入的值在构造器执行时通常还未被赋上。  
+
+更详细的原理（步骤要点）
+
+1. Spring 创建 bean 的大致流程（简化）：  
+ 解析 BeanDefinition，确定使用哪个构造器（可能需要解析构造器参数类型/注解）。  
+ 在实例化阶段，Spring 先解析构造器参数的依赖（包括 @Autowired、@Value 占位符），把这些参数准备好后再调用构造器创建实例。  
+  实例创建后，Spring 对实例执行依赖注入步骤：注入字段、调用 setter、应用 BeanPostProcessors、最后调用 @PostConstruct 等。  
+2. @Value 在构造器参数上：  
+Spring 会在准备构造器参数时，通过 Environment / PropertySourcesPlaceholderConfigurer / ConversionService 等解析 "${...}" 占位符或 SpEL，得到实际值，然后把值作为构造参数传入构造器。  
+3. @Value 在字段上：  
+字段注入通过后处理（post-processing）阶段完成，发生在构造器执行之后，因此构造器里读取字段会得到默认值（例如 int 为 0）。  
