@@ -205,14 +205,13 @@ Caffeine 用 Striped 锁 + 异步加载队列，把锁竞争降到最低：
 因为线程数只有 8（不是 100），锁竞争没到崩溃点，但已经暴露了根本缺陷——如果线程数到 100，Guava 会直接卡死（就像你第一次测试的场景）。  
 
 💡 程序员必看：如何避免踩坑？
-✅ 方案 1：用 Caffeine（推荐）
-直接替换 Guava，Caffeine 从设计上就解决了锁竞争问题。
-你测试结果已经证明：Caffeine 在任何并发场景下都更稳更快。
-✨ 一句话总结：Guava 是“老式电梯”，Caffeine 是“智能电梯”——高峰期不排队！
-✅ 方案 2：如果必须用 Guava（慎用！）
-必须分散 key！让每个线程用不同 key（比如 key_0、key_1... key_7）：
-java
-编辑
+✅ 方案 1：用 Caffeine（推荐） 
+直接替换 Guava，Caffeine 从设计上就解决了锁竞争问题。  
+你测试结果已经证明：Caffeine 在任何并发场景下都更稳更快。  
+✨ 一句话总结：Guava 是“老式电梯”，Caffeine 是“智能电梯”——高峰期不排队！  
+✅ 方案 2：如果必须用 Guava（慎用！） 
+必须分散 key！让每个线程用不同 key（比如 key_0、key_1... key_7）：  
+~~~
 // Guava 测试代码修改（关键！）
 @Benchmark
 public String guavaBenchmark() {
@@ -220,22 +219,25 @@ public String guavaBenchmark() {
     String key = "key_" + (Thread.currentThread().getId() % 8);
     return guavaCache.get(key); // 不再抢同一个 key
 }
-✅ 修改后，Guava 性能会接近 Caffeine（但依然不如 Caffeine 稳）。
+~~~
+✅ 修改后，Guava 性能会接近 Caffeine（但依然不如 Caffeine稳） 
 
-🌟 为什么 Caffeine 会比 Guava 快 60%？（技术彩蛋）
+🌟 为什么 Caffeine 会比 Guava 快 60%？（技术彩蛋） 
+---
 机制	Guava	Caffeine
-锁粒度	分段锁（Segment Lock）	无锁 + CAS + 异步队列
-缓存加载	同步阻塞（线程排队）	异步加载（多线程共享加载任务）
-热点 key 处理	严重锁竞争	几乎无锁竞争
-内存效率	低（冗余数据结构）	高（优化内存布局）
-💡 从代码库看：Caffeine 的 CacheLoader 实现比 Guava 少 40% 的同步操作，这就是性能差距的根源！
+锁粒度	分段锁（Segment Lock）	无锁 + CAS + 异步队列  
+缓存加载	同步阻塞（线程排队）	异步加载（多线程共享加载任务）  
+热点 key 处理	严重锁竞争	几乎无锁竞争  
+内存效率	低（冗余数据结构）	高（优化内存布局）  
+---
+💡 从代码库看：Caffeine 的 CacheLoader 实现比 Guava 少 40% 的同步操作，这就是性能差距的根源！  
 
-📌 最后给你的行动建议
-直接用 Caffeine（别纠结 Guava）→ 你测试结果已证明它更优。
-如果还在用 Guava，立刻检查代码：
-是否所有线程都用同一个 key？
-如果是，立刻按我上面的代码修改（用 Thread.currentThread().getId() 分散 key）。
-别担心“性能损失”：Caffeine 100%兼容 Guava 的 API，替换成本几乎为 0。
-✨ 一句话总结：Guava 是“老式水龙头”，Caffeine 是“智能水龙头”——水流更稳、更快、还不卡！  
+📌 最后给你的行动建议  
+直接用 Caffeine（别纠结 Guava）→ 你测试结果已证明它更优。  
+如果还在用 Guava，立刻检查代码：  
+是否所有线程都用同一个 key？  
+如果是，立刻按我上面的代码修改（用 Thread.currentThread().getId() 分散 key）。  
+别担心“性能损失”：Caffeine 100%兼容 Guava 的 API，替换成本几乎为 0。  
+✨ 一句话总结：Guava 是“老式水龙头”，Caffeine 是“智能水龙头”——水流更稳、更快、还不卡！    
 
 
